@@ -2,6 +2,7 @@
 {
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
+    using Microsoft.AspNetCore.Mvc.Versioning;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Options;
@@ -42,6 +43,7 @@
                 {
                     // reporting api versions will return the headers "api-supported-versions" and "api-deprecated-versions"
                     options.ReportApiVersions = true;
+                    options.ApiVersionReader = new HeaderApiVersionReader( "api-version" );
                 } );
             services.AddVersionedApiExplorer(
                 options =>
@@ -75,7 +77,10 @@
         {
             app.UseRouting();
             app.UseEndpoints( builder => builder.MapControllers() );
-            app.UseSwagger();
+            app.UseSwagger( options =>
+             {
+                 options.SerializeAsV2 = true;
+             } );
             app.UseSwaggerUI(
                 options =>
                 {

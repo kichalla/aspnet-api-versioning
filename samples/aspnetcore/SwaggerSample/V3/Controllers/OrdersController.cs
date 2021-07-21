@@ -47,7 +47,7 @@
         [ProducesResponseType( typeof( Order ), 200 )]
         [ProducesResponseType( 400 )]
         [ProducesResponseType( 404 )]
-        public IActionResult Get( int id ) => Ok( new Order() { Id = id, Customer = "John Doe" } );
+        public IActionResult Get( int id ) => Ok( new Order() { Id = id, Customer = "John Doe3" } );
 
         /// <summary>
         /// Places a new order.

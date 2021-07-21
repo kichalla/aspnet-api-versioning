@@ -9,10 +9,11 @@
  <ItemGroup>
   <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
   <PackageReference Include="Swashbuckle.AspNetCore" Version="6.0.2-*" />
+  <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
  </ItemGroup>
 
- <ItemGroup>
+ <!--<ItemGroup>
   <ProjectReference Include="..\..\..\src\Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer\Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer.csproj" />
- </ItemGroup>
+ </ItemGroup>-->
 
 </Project>
