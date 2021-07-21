@@ -10,7 +10,7 @@
     /// </summary>
     [ApiController]
     [ApiVersion( "3.0" )]
-    [Route( "api/v{version:apiVersion}/[controller]" )]
+    [Route( "api/[controller]" )]
     public class PeopleController : ControllerBase
     {
         /// <summary>
@@ -80,7 +80,6 @@
         /// Creates a new person.
         /// </summary>
         /// <param name="person">The person to create.</param>
-        /// <param name="apiVersion">The requested API version.</param>
         /// <returns>The created person.</returns>
         /// <response code="201">The person was successfully created.</response>
         /// <response code="400">The person was invalid.</response>
@@ -88,7 +87,7 @@
         [Produces( "application/json" )]
         [ProducesResponseType( typeof( Person ), 201 )]
         [ProducesResponseType( 400 )]
-        public IActionResult Post( [FromBody] Person person, ApiVersion apiVersion )
+        public IActionResult Post( [FromBody] Person person )
         {
             person.Id = 42;
             return CreatedAtAction( nameof( Get ), new { id = person.Id }, person );

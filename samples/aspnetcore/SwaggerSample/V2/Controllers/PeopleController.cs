@@ -10,7 +10,7 @@
     /// </summary>
     [ApiController]
     [ApiVersion( "2.0" )]
-    [Route( "api/v{version:apiVersion}/[controller]" )]
+    [Route( "api/[controller]" )]
     public class PeopleController : ControllerBase
     {
         /// <summary>
