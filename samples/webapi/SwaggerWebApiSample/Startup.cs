@@ -4,6 +4,7 @@ namespace Microsoft.Examples
 {
     using global::Owin;
     using Microsoft.Web.Http.Routing;
+    using Microsoft.Web.Http.Versioning;
     using Swashbuckle.Application;
     using System;
     using System.IO;
@@ -29,7 +30,11 @@ namespace Microsoft.Examples
             var httpServer = new HttpServer( configuration );
 
             // reporting api versions will return the headers "api-supported-versions" and "api-deprecated-versions"
-            configuration.AddApiVersioning( options => options.ReportApiVersions = true );
+            configuration.AddApiVersioning( options =>
+            {
+                options.ReportApiVersions = true;
+                options.ApiVersionReader = new QueryStringApiVersionReader( "api-version" );
+            });
             configuration.MapHttpAttributeRoutes( constraintResolver );
 
             // add the versioned IApiExplorer and capture the strongly-typed implementation (e.g. VersionedApiExplorer vs IApiExplorer)
@@ -69,7 +74,7 @@ namespace Microsoft.Examples
                                     .TermsOfService( "Shareware" );
                             }
                         } );
-                                
+
                     // add a custom operation filter which sets default values
                     swagger.OperationFilter<SwaggerDefaultValues>();
 
